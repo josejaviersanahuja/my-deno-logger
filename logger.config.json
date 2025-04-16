@@ -1,0 +1,41 @@
+{
+  "presets": {
+    "development": {
+      "env": "development",
+      "level": "debug",
+      "format": "pretty",
+      "color": "auto",
+      "transports": [
+        { "type": "stdout" }
+      ]
+    },
+    "test": {
+      "env": "test",
+      "level": "warn",
+      "format": "none",
+      "mute": true,
+      "transports": [
+        { "type": "memory" }
+      ]
+    },
+    "production": {
+      "env": "production",
+      "level": "warn",
+      "format": "json",
+      "color": false,
+      "transports": [
+        { "type": "file", "path": "./logs/app.log", "rotation": "daily" }
+      ]
+    }
+  },
+  "defaults": {
+    "color": "blue",
+    "format": "pretty",
+    "level": "info",
+    "timestamp": true
+  },
+  "colorsByFile": {
+    "auth.ts": "cyan",
+    "db.ts": "magenta"
+  }
+}
