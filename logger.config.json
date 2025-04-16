@@ -1,41 +1,52 @@
 {
+  "defaults": {
+    "timestamp": true,
+    "format": "pretty",
+    "color": "blue",
+    "level": "info",
+    "transports": [
+      { "type": "stdout" }
+    ]
+  },
   "presets": {
     "development": {
-      "env": "development",
       "level": "debug",
-      "format": "pretty",
+      "inspect": true,
       "color": "auto",
       "transports": [
         { "type": "stdout" }
-      ]
+      ],
+      "combinePresets": ["test", "production"]
     },
     "test": {
-      "env": "test",
-      "level": "warn",
-      "format": "none",
       "mute": true,
+      "storeInMemory": true,
+      "trackTime": true,
+      "format": "none",
       "transports": [
         { "type": "memory" }
       ]
     },
     "production": {
-      "env": "production",
       "level": "warn",
-      "format": "json",
+      "format": "jsonl",
       "color": false,
       "transports": [
-        { "type": "file", "path": "./logs/app.log", "rotation": "daily" }
+        {
+          "type": "file",
+          "path": "./logs/app.log",
+          "rotation": "daily"
+        },
+        {
+          "type": "webhook",
+          "url": "https://my-log-endpoint.com/hook"
+        }
       ]
     }
   },
-  "defaults": {
-    "color": "blue",
-    "format": "pretty",
-    "level": "info",
-    "timestamp": true
-  },
   "colorsByFile": {
     "auth.ts": "cyan",
-    "db.ts": "magenta"
+    "db.ts": "magenta",
+    "payment.ts": "yellow"
   }
 }
