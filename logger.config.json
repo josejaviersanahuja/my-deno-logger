@@ -1,52 +1,6 @@
 {
-  "defaults": {
-    "timestamp": true,
-    "format": "pretty",
-    "color": "blue",
-    "level": "info",
-    "transports": [
-      { "type": "stdout" }
-    ]
-  },
-  "presets": {
-    "development": {
-      "level": "debug",
-      "inspect": true,
-      "color": "auto",
-      "transports": [
-        { "type": "stdout" }
-      ],
-      "combinePresets": ["test", "production"]
-    },
-    "test": {
-      "mute": true,
-      "storeInMemory": true,
-      "trackTime": true,
-      "format": "none",
-      "transports": [
-        { "type": "memory" }
-      ]
-    },
-    "production": {
-      "level": "warn",
-      "format": "jsonl",
-      "color": false,
-      "transports": [
-        {
-          "type": "file",
-          "path": "./logs/app.log",
-          "rotation": "daily"
-        },
-        {
-          "type": "webhook",
-          "url": "https://my-log-endpoint.com/hook"
-        }
-      ]
-    }
-  },
-  "colorsByFile": {
-    "auth.ts": "cyan",
-    "db.ts": "magenta",
-    "payment.ts": "yellow"
-  }
+  "color": "cyan",
+  "transporter": "stdout",
+  "format": "pretty",
+  "activeLevels": ["debug", "info", "warn", "error", "fatal"]
 }

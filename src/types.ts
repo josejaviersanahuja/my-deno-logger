@@ -1,32 +1,17 @@
-// Definición de niveles válidos
+// src/types.ts
 export type LogLevel = "debug" | "info" | "warn" | "error" | "fatal";
 
-// Definición de formatos válidos
-export type LogFormat = "pretty" | "jsonl" | "key-value" | "none";
-
-// Transporte básico de logs
-export type LoggerTransport =
-  | { type: "stdout" }
-  | { type: "stderr" }
-  | { type: "file"; path: string; rotation?: "daily" | "size"; maxSizeMB?: number }
-  | { type: "webhook"; url: string }
-  | { type: "memory" }; // especial para test
-
-// Configuración general del logger
 export interface LoggerConfig {
-  timestamp: boolean;
-  level: LogLevel;
-  format: LogFormat;
-  color: string | false;
-  inspect?: boolean; // Modo verbose de objetos
-  trackTime?: boolean; // Medir tiempos de ejecución
-  mute?: boolean; // Silenciar salida (modo test)
-  storeInMemory?: boolean; // Acumular logs en array
-  transports: LoggerTransport[];
-  colorsByFile?: Record<string, string>;
+  color?: string;
+  transporter?:
+    | "stdout"
+    | "stderr"
+    | { type: "file"; path: string }
+    | { type: "webhook"; url: string };
+  format?: "pretty" | "jsonl" | "kv";
+  activeLevels?: LogLevel[];
 }
 
-// Preset parcial (usado en logger.config.json)
-export interface LoggerPreset extends Partial<LoggerConfig> {
-  combinePresets?: string[];
+export interface Transporter {
+  (formatted: string, raw: Record<string, unknown>): void | Promise<void>;
 }
