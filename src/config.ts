@@ -18,7 +18,7 @@ export async function loadLoggerConfig(): Promise<LoggerConfig> {
   const activePresetNames = getPresetChain(env, config.presets);
 
   // Fusionamos: defaults + presets (en orden)
-  const merged: LoggerConfig = { ...config.defaults };
+  const merged: LoggerConfig = { ...config.defaults } as LoggerConfig; // @TODO Mejorar el tipado y no hardcodear el tipo
   for (const name of activePresetNames) {
     const preset = config.presets[name];
     Object.assign(merged, preset);
