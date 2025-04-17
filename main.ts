@@ -19,3 +19,20 @@ logger.warn("Warning message");
 logger.error("Error occurred");
 logger.fatal("Fatal error");
 logger.info("This is an info message", { user: "John Doe" });
+
+const str = Deno.inspect(logger, {
+  breakLength: 1000,
+  colors: true,
+  trailingComma: true,
+  compact: true,
+  sorted: true,
+  getters: true,
+  showHidden: true,
+  showProxy: true,
+  depth: 3,
+  escapeSequences: true,
+  iterableLimit: 100,
+  strAbbreviateSize: 100,
+});
+
+logger.info(str);

@@ -1,21 +1,17 @@
 {
   "defaults": {
-    "timestamp": true,
-    "format": "pretty",
-    "color": "blue",
+    "timestamp": false,
+    "format": "none",
+    "color": false,
     "level": "info",
-    "transports": [
-      { "type": "stdout" }
-    ]
+    "transports": [{ "type": "stdout" }]
   },
   "presets": {
     "development": {
       "level": "debug",
       "inspect": true,
       "color": "auto",
-      "transports": [
-        { "type": "stdout" }
-      ],
+      "transports": [{ "type": "stdout" }],
       "combinePresets": ["test", "production"]
     },
     "test": {
@@ -23,9 +19,7 @@
       "storeInMemory": true,
       "trackTime": true,
       "format": "none",
-      "transports": [
-        { "type": "memory" }
-      ]
+      "transports": [{ "type": "memory" }]
     },
     "production": {
       "level": "warn",
